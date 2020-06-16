@@ -1,11 +1,18 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
+# batata <a><img src='man/figures/hex.png' align="right" height="200" /></a>
+
 <!-- badges: start -->
 
-<!-- badges: end -->
+[![CRAN
+status](https://www.r-pkg.org/badges/version/batata)](https://CRAN.R-project.org/package=batata)
 
-# batata <a><img src='man/figures/hex.png' align="right" height="200" /></a>
+![](http://cranlogs.r-pkg.org/badges/grand-total/batata?color=blue)
+
+<a href="https://www.buymeacoffee.com/Fodil" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" alt="Buy Me A Coffee" style="height: 41px !important;width: 174px !important;box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;-webkit-box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;" ></a>
+
+<!-- badges: end -->
 
 The goal of batata is to help R users manage R packages removals. For
 example, imagine you’re attending tomorrow an R meet up in which you’ll
@@ -20,20 +27,23 @@ confirm your decision (which adds a certain degree of security), you can
 also run `today_packages()` to check all the today installed packages
 before making a decision.
 
-# Important
-
-<center>
-
-### You might need to install [Rtools](https://cran.r-project.org/bin/windows/Rtools/) in order to use the package
-
-</center>
+`batata` takes into account the **modification time** of the packages
+instead of the **birth time**. As such, if you decide to update a
+package to a newer version, `batata` will consider it as a new package
+(which is technically true as a new package will be installed).
 
 ## Installation
 
-You can install the development version of batata from Github
+You can install the `batata` package from CRAN with:
 
 ``` r
-install.packages("remotes")
+install.packages("batata")
+```
+
+Install the development version of `batata` from Github with:
+
+``` r
+install.packages("remotes") # if not installed
 
 remotes::install_github("feddelegrand7/batata")
 ```
@@ -91,24 +101,24 @@ library(batata)
 # The 10 last installed packages
 
 latest_packages(n = 10)
-#>        packages   modification_time
-#> 1      ggmosaic 2020-06-04 14:24:02
-#> 2  productplots 2020-06-04 14:24:02
-#> 3       farrell 2020-06-04 13:11:36
-#> 4        batata 2020-06-03 20:00:55
-#> 5         dplyr 2020-06-03 19:48:27
-#> 6        ralger 2020-06-03 16:32:44
-#> 7          deaR 2020-06-03 15:25:29
-#> 8       writexl 2020-06-03 15:25:28
-#> 9        reactR 2020-06-01 08:45:02
-#> 10   shinyalert 2020-05-31 21:51:12
+#>       packages      modification_time    
+#>  [1,] "batata"      "2020-06-16 13:26:21"
+#>  [2,] "rmarkdown"   "2020-06-16 03:10:15"
+#>  [3,] "tinytex"     "2020-06-16 03:10:13"
+#>  [4,] "base64enc"   "2020-06-16 03:10:13"
+#>  [5,] "devtools"    "2020-06-16 02:54:53"
+#>  [6,] "withr"       "2020-06-16 02:54:53"
+#>  [7,] "testthat"    "2020-06-16 02:54:52"
+#>  [8,] "sessioninfo" "2020-06-16 02:54:52"
+#>  [9,] "rversions"   "2020-06-16 02:54:52"
+#> [10,] "rstudioapi"  "2020-06-16 02:54:52"
 
 
-# The last package installed 
+# The last package installed (by default = 1)
 
-latest_packages(n = 1)
-#>   packages   modification_time
-#> 1 ggmosaic 2020-06-04 14:24:02
+latest_packages()
+#>      packages modification_time    
+#> [1,] "batata" "2020-06-16 13:26:21"
 ```
 
 -----

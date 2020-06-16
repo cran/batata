@@ -7,6 +7,12 @@ knitr::opts_chunk$set(
 )
 
 ## ---- eval=FALSE--------------------------------------------------------------
+#  
+#  install.packages("batata")
+#  
+#  
+
+## ---- eval=FALSE--------------------------------------------------------------
 #  install.packages("remotes")
 #  
 #  remotes::install_github("feddelegrand7/batata")
