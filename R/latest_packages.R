@@ -21,6 +21,27 @@
 latest_packages <- function(n = 1, lib = .libPaths()){
 
 
+  if (!is.numeric(n)) {
+
+    stop(paste0("'n' must be numeric not ", typeof(n)))
+
+  }
+
+  if (!length(n) == 1) {
+
+    stop(paste0("'n' must be of length 1 not ", length(n)))
+
+  }
+
+  if (n < 1) {
+
+    stop(" 'n' must be greater or equal than 1")
+
+  }
+
+
+
+
 
   pack_paths <- fs::dir_ls(lib)
 
@@ -37,7 +58,8 @@ latest_packages <- function(n = 1, lib = .libPaths()){
 
 
 
-  data.frame(packages = pack_names, modification_time = as.character(pack_latest$mod_time))
+  data.frame(packages = pack_names,
+            modification_time = pack_latest$mod_time)
 
 
 
