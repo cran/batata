@@ -170,6 +170,8 @@ install_most_starred <- function(n = 10) {
 #'
 
 display_starred <- function(github_user, n = 5, onlyR = FALSE) {
+
+
   if (!is.character(github_user)) {
     stop("'github_user' must be provided as a character string")
   }
@@ -178,28 +180,54 @@ display_starred <- function(github_user, n = 5, onlyR = FALSE) {
     stop("the 'n' parameter must be numeric and greater than 1")
   }
 
-  data <- jsonlite::fromJSON(glue::glue("https://api.github.com/users/{github_user}/starred?per_page={n}"))
+  tryCatch(
 
 
-  starred_repo <- if (onlyR) {
+    expr = {
 
-    data[data$language == "R", ]$name
 
-  } else {
+      data <- jsonlite::fromJSON(glue::glue("https://api.github.com/users/{github_user}/starred?per_page={n}"))
 
-    data$name
 
-  }
+      starred_repo <- if (onlyR) {
 
-  if(length(starred_repo) == 0) {
+        data[data$language == "R", ]$full_name
 
-    message("I can't find any R starred package, go starr some !")
+      } else {
 
-  } else {
+        data$full_name
 
-   return(starred_repo)
+      }
 
-  }
+      if(length(starred_repo) == 0 ) {
+
+        message("I can't find any R starred package, go starr some !")
+
+        return(NA)
+
+      } else {
+
+        return(starred_repo)
+
+      }
+
+    },
+
+    error = function(e) {
+
+      if (grepl("HTTP error 404", e, fixed = TRUE)) {
+
+        message(paste0("Error:", e, "maybe you've provided a non existing account???"))
+
+        return(NULL)
+
+      }
+
+    }
+
+
+  )
+
 
 }
 
@@ -226,7 +254,7 @@ display_most_starred <- function(n = 10) {
 
   data <- as.data.frame(data)
 
-  most_starred <- data$items.name
+  most_starred <- data$items.full_name
 
   return(most_starred)
 

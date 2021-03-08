@@ -65,4 +65,63 @@ test_that("expect error when n not numeric or not length 1", {
 
 
 
+test_that("expect a data frame from latest_packages()", {
+
+  expect_s3_class(latest_packages(), "data.frame")
+
+})
+
+
+
+test_that("latest_packages() returns at least one row", {
+
+  expect_gt(nrow(latest_packages()), 0)
+
+})
+
+
+test_that("the first column of latest_packages() is of type character", {
+
+  data <- latest_packages()
+
+  expect_type(data$packages, "character")
+
+})
+
+
+test_that("the data returned has exactly two columns", {
+
+
+  expect_equal(ncol(latest_packages()), 2)
+
+
+})
+
+
+test_that("expect the modification time column to be of POSIXct", {
+
+
+  data <- latest_packages(5)
+
+  expect_equal(class(data$modification_time), c("POSIXct","POSIXt"))
+
+})
+
+
+
+
+
+test_that("latest_packages() has the expected number of rows", {
+
+
+  expect_equal(nrow(latest_packages(1)), 1)
+  expect_equal(nrow(latest_packages(2)), 2)
+  expect_equal(nrow(latest_packages(3)), 3)
+  expect_equal(nrow(latest_packages(4)), 4)
+  expect_equal(nrow(latest_packages(5)), 5)
+
+})
+
+
+
 

@@ -16,6 +16,8 @@ downloads](https://cranlogs.r-pkg.org/badges/grand-total/batata)](https://cran.r
 badge](https://img.shields.io/badge/Build%20with-♥%20and%20R-blue)](https://github.com/feddelegrand7/batata)
 [![R build
 status](https://github.com/feddelegrand7/batata/workflows/R-CMD-check/badge.svg)](https://github.com/feddelegrand7/batata/actions)
+[![Codecov test
+coverage](https://codecov.io/gh/feddelegrand7/batata/branch/master/graph/badge.svg)](https://codecov.io/gh/feddelegrand7/batata?branch=master)
 <!-- badges: end -->
 
 `batata` is A Toolbox for Managing R Packages Installation and Removal.
@@ -26,14 +28,6 @@ You can install the `batata` package from CRAN with:
 
 ``` r
 install.packages("batata")
-```
-
-Install the development version of `batata` from Github with:
-
-``` r
-install.packages("remotes") # if not installed
-
-remotes::install_github("feddelegrand7/batata")
 ```
 
 <!-- For example, imagine you're attending tomorrow an R meet up in which you'll experiment many packages that you don't want to keep. By the end of the meet up, you'll have to remember each installed package, its name (trust me, packages' names may be complicated). Further, each installed package might come with a bunch of dependencies which makes the operations more complicated. Using the batata package, you can just run `rm_today_packages()` (one of many other functions), and you're clean for today. Before removing the packages, batata will prompt you to confirm your decision (which adds a certain degree of security), you can also run `today_packages()` to check all the today installed packages before making a decision.  -->
